@@ -2,7 +2,7 @@
   "schema_version": 1,
   "_que_es": "Metadatos PÚBLICOS y SANEADOS de las versiones de Agrofacturas. No contiene código, paquetes, enlaces de descarga ni datos de ningún cliente.",
   "producto": "agrofacturas",
-  "generado": "2026-09-28T15:12:44.761Z",
+  "generado": "2026-09-28T15:30:32.570Z",
   "latest": "1.1.1",
   "releases": [
     {
@@ -173,10 +173,10 @@
       "title": "Versión 1.0.13",
       "notes": [
         "## Correcciones importantes",
-        "- **Fallo de concurrencia con el ERP**: todas las conexiones a SQL Server (Hispatec y Comunicaciones) usaban la conexión \"global\" de la librería, que se comparte entre operaciones simultáneas. Si dos operaciones del ERP coincidían en el tiempo, una podía acabar usando por error la conexión de la otra (p. ej. intentar guardar en Comunicaciones usando la conexión abierta a Hispatec), provocando errores como \"Invalid object name\" y sincronizaciones fallidas. Ahora cada operación usa su propia conexión aislada.",
-        "- **\"Eliminar del ERP\" dejaba el badge \"EXPORTADA\" pegado**: al borrar una factura de Hispatec desde el programa, se limpiaba el ID del ERP pero no la fecha de exportación, así que la factura seguía apareciendo como exportada aunque ya no existiera en Hispatec. Ahora vuelve correctamente a \"Para exportar\".",
-        "- **Detección de duplicados en facturas de venta**: dejó de basarse en la numeración interna de Hispatec (Serie/Número) y ahora busca por la columna real donde Hispatec guarda el nº de factura del cliente (columna \"Factura\"), detectando automáticamente qué columna es en cada instalación.",
-        "- Nueva validación antes de exportar: si la cuenta contrapartida no existe en Hispatec para esa empresa concreta (las cuentas son específicas por empresa), se avisa con un mensaje claro en vez de dejar que el ERP la rechace con un error críptico.",
+        "- **Fallo de concurrencia con el ERP**: todas las conexiones al ERP (la contabilidad y la cola de comunicaciones) usaban la conexión \"global\" de la librería, que se comparte entre operaciones simultáneas. Si dos operaciones del ERP coincidían en el tiempo, una podía acabar usando por error la conexión de la otra (p. ej. intentar escribir en la cola de comunicaciones a través de la conexión abierta a la contabilidad), provocando errores de objeto no encontrado y sincronizaciones fallidas. Ahora cada operación usa su propia conexión aislada.",
+        "- **\"Eliminar del ERP\" dejaba el badge \"EXPORTADA\" pegado**: al borrar una factura del ERP desde el programa, se limpiaba el identificador del ERP pero no la fecha de exportación, así que la factura seguía apareciendo como exportada aunque ya no existiera allí. Ahora vuelve correctamente a \"Para exportar\".",
+        "- **Detección de duplicados en facturas de venta**: dejó de basarse en la numeración interna del ERP y ahora busca por el dato donde el ERP guarda de verdad el nº de factura del cliente, detectando automáticamente dónde está en cada instalación.",
+        "- Nueva validación antes de exportar: si la cuenta contrapartida no existe en el ERP para esa empresa concreta (las cuentas son específicas por empresa), se avisa con un mensaje claro en vez de dejar que el ERP la rechace con un error críptico.",
         "- Cuando una factura queda marcada como posible duplicada en el ERP, ahora siempre se pregunta \"enlazar o contabilizar\" de forma consistente, también en reintentos tras un rechazo previo (antes en ese caso se enlazaba en silencio).",
         "## Punteo trimestral",
         "- Se puede **editar la factura directamente** desde el propio panel de punteo (mismo formulario que en el resto del programa), sin salir a una ventana aparte.",
@@ -204,8 +204,8 @@
         "- **Rotación de imagen** en el modo Punteo, con la misma estética que la previsualización normal.",
         "## Correcciones",
         "- Los **Contactos** con varias empresas asignadas dejaban fuera de la vista los botones de activar/editar. Ahora la columna de empresas hace salto de línea en vez de empujar el resto de la tabla.",
-        "- La cuenta de cliente **43000000000** se excluía siempre al sincronizar terceros desde Hispatec, aunque en algunas empresas es un cliente real (p. ej. la propia cooperativa). Ahora solo se excluye cuando no tiene ningún sujeto asociado.",
-        "- La detección de **duplicados del ERP en facturas de venta** dejó de depender de la cuenta contable del cliente (poco fiable en Hispatec) y ahora usa Centro + Serie + Número, con reconocimiento de formatos de numeración alternativos.",
+        "- La **cuenta genérica de clientes** se excluía siempre al sincronizar terceros desde el ERP, aunque en algunas empresas es un cliente real (p. ej. la propia cooperativa). Ahora solo se excluye cuando no tiene ninguna ficha asociada.",
+        "- La detección de **duplicados del ERP en facturas de venta** dejó de depender de la cuenta contable del cliente (poco fiable) y ahora usa el centro contable junto con la serie y el número del documento, con reconocimiento de formatos de numeración alternativos.",
         "- Una factura exportada, luego eliminada del ERP y reclasificada a otro tipo de documento (p. ej. a persona física) se quedaba con el aviso de \"ya exportada\" y bloqueada para editar, aunque ya no estuviera en Exportadas.",
         "## Mejoras",
         "- La **fecha límite del trimestre** (para calcular la fecha contable) y el **bloqueo de edición de facturas de trimestres cerrados** ahora son dos ajustes independientes en Ajustes › Contabilidad. El bloqueo de edición usa el día legal de presentación del 303 (20 de cada mes de presentación) y se puede desactivar."
@@ -217,10 +217,10 @@
       "title": "Versión 1.0.11",
       "notes": [
         "## Correcciones",
-        "- La sincronización de terceros dejaba fuera la cuenta de cliente **43000000000**, asumiendo que era una cabecera genérica. En realidad es un cliente real en muchas empresas (la cooperativa figura como cliente de cada empresa socia). Ahora solo se excluyen las cabeceras genéricas que no tienen ningún sujeto asociado, de modo que esa cuenta aparece correctamente en el catálogo de Proveedores / Clientes.",
-        "- La detección de duplicados contra el ERP fallaba en las **facturas de venta**: filtraba por la cuenta contable del cliente, que en Hispatec no siempre coincide con la del catálogo. Ahora las ventas se comprueban por Centro + Serie + Número (que identifican de forma única una factura emitida), con un fallback adicional para el formato de numeración \"2F/2025\".",
+        "- La sincronización de terceros dejaba fuera la **cuenta genérica de clientes**, asumiendo que era una cabecera sin uso. En realidad es un cliente real en muchas empresas (la cooperativa figura como cliente de cada empresa socia). Ahora solo se excluyen las cabeceras genéricas que no tienen ninguna ficha asociada, de modo que esa cuenta aparece correctamente en el catálogo de Proveedores / Clientes.",
+        "- La detección de duplicados contra el ERP fallaba en las **facturas de venta**: filtraba por la cuenta contable del cliente, que en el ERP no siempre coincide con la del catálogo. Ahora las ventas se comprueban por centro contable, serie y número, que identifican de forma única una factura emitida, con un respaldo adicional para el formato de numeración \"2F/2025\".",
         "## Mejoras",
-        "- Nuevo botón para **sincronizar la cuenta de contrapartida** desde Hispatec: si corriges la cuenta directamente en el ERP después de exportar, al sincronizar se actualiza también en Agrofacturas para que el dato refleje lo realmente contabilizado."
+        "- Nuevo botón para **sincronizar la cuenta de contrapartida** desde el ERP: si corriges la cuenta directamente en el ERP después de exportar, al sincronizar se actualiza también en Agrofacturas para que el dato refleje lo realmente contabilizado."
       ]
     },
     {
@@ -240,9 +240,9 @@
         "- Las facturas ya contabilizadas en el ERP con fecha de un trimestre cerrado quedan bloqueadas para edición",
         "- Botón \"Puntear\" deshabilitado visualmente hasta que hay empresa y trimestre con facturas seleccionados",
         "## Correcciones",
-        "- La detección de duplicados contra el ERP en tiempo real fallaba casi siempre que el proveedor ya estaba reconocido localmente, por enlazar con una columna casi siempre vacía en Hispatec (Id_Proveedor/Id_Cliente) en vez de Id_CuentaContable",
+        "- La detección de duplicados contra el ERP en tiempo real fallaba casi siempre que el proveedor ya estaba reconocido localmente: se enlazaba por un dato del ERP que casi nunca viene rellenado, en vez de por la cuenta contable",
         "- La comparación de nº de documento no toleraba espacios internos distintos (ej. \"7/58\" vs \"7 / 58\"), perdiendo duplicados reales",
-        "- Al enlazar automáticamente un duplicado confirmado, no se marcaba como exportada (fecha_exportacion), dejando la factura atascada en \"Para exportar\" sin aviso",
+        "- Al enlazar automáticamente un duplicado confirmado, no se marcaba como exportada, dejando la factura atascada en \"Para exportar\" sin aviso",
         "- La ruta del archivo en la tabla de enlace del ERP quedaba obsoleta si el archivo se movía después de exportar (p.ej. al corregir la fecha contable); ahora se refresca automáticamente",
         "- Estado vacío del filtro \"Con errores\" en Exportadas sin icono, ahora consistente con el resto de la app"
       ]
@@ -270,15 +270,15 @@
       "title": "Versión 1.0.8",
       "notes": [
         "## Mejoras",
-        "- **Seguridad reforzada**: Content-Security-Policy completa (frame-ancestors, object-src none), X-Frame-Options SAMEORIGIN, rate limiting en login (5 intentos / 15 min), sesiones persistentes en SQLite, sanitización de errores en respuestas HTTP.",
+        "- **Seguridad reforzada**: Content-Security-Policy completa (frame-ancestors, object-src none), X-Frame-Options SAMEORIGIN, límite de intentos en el login (5 intentos / 15 min), sesiones persistentes en la base de datos local, sanitización de errores en las respuestas HTTP.",
         "- **Cumplimiento RGPD**: inventario de datos personales, exportación JSON (Art. 15 y 20), anonimización individual (Art. 17), retención automática configurable, política de privacidad editable. Accesible desde Configuración → Privacidad y datos.",
-        "- **Licencia propietaria** (LICENSE) y README completo en español con documentación de features, instalación, arquitectura y atajos de teclado.",
+        "- **Licencia propietaria** (LICENSE) y README completo en español con documentación de funciones, instalación, arquitectura y atajos de teclado.",
         "- **Preview al editar empresa**: al pulsar en la celda EMPRESA de la tabla de pendientes, se abre automáticamente la previsualización del documento. Al confirmar con Enter y saltar al siguiente, el preview se actualiza.",
         "## Cambios",
-        "- **Fix preview PDF en Edge**: cabeceras no-cache en el endpoint del visor PDF y tabindex en iframe para que Edge no use respuestas cacheadas con la política antigua.",
-        "- **Fix sincronización ERP**: todas las empresas se mapean correctamente con id_erp. Los proveedores importados del ERP (origen_erp=1) ya no se anonimizan por error. getEstado() lee de config.json en vez de solo.env. Los proveedores \"promovidos\" (manual→ERP) se cuentan como actualizados en la UI.",
-        "- **Protección contra anonimización accidental**: purgarDatosPersonalesAntiguos excluye proveedores del ERP. anonimizarProveedor rechaza proveedores con origen_erp=1. El flag { ejecutar: true } es obligatorio para ejecutar la purga.",
-        "- **Config de conexiones**: el estado del ERP y Comunicaciones en /api/connections lee de config.json correctamente (antes dependía solo de variables de entorno)."
+        "- **Corrección del preview PDF en Edge**: cabeceras no-cache en el visor de PDF y ajuste del iframe para que Edge no reutilice respuestas cacheadas con la política antigua.",
+        "- **Corrección de la sincronización con el ERP**: todas las empresas se mapean correctamente con su código de ERP. Los proveedores importados del ERP ya no se anonimizan por error. El estado de la conexión se lee de la configuración del programa y no solo de las variables de entorno. Los proveedores \"promovidos\" (de manual a ERP) se cuentan como actualizados en la interfaz.",
+        "- **Protección contra anonimización accidental**: la purga automática de datos personales antiguos excluye los proveedores que vienen del ERP, la anonimización individual los rechaza, y la purga exige una confirmación explícita para ejecutarse.",
+        "- **Configuración de conexiones**: el estado del ERP y de su cola de comunicaciones se lee correctamente de la configuración del programa (antes dependía solo de variables de entorno)."
       ]
     },
     {
@@ -289,20 +289,20 @@
         "## Mejoras",
         "- **Resumen trimestral en PDF** desde Punteo trimestral. Lo abre en una pestaña con cabecera de empresa y periodo, desglose IVA por tramos para el modelo 303, tablas separadas de compras y ventas, retenciones, y resultado IVA destacado (a ingresar / a compensar). Solo incluye facturas exportadas (contabilizadas).",
         "- **Visor PDF mejorado**: zoom con Ctrl+rueda (la rueda sola hace scroll normal por las páginas), arrastra para moverte cuando hay zoom in, indicador visual del %, doble clic resetea zoom.",
-        "- **Para exportar más seguro**: las facturas con datos incompletos (sin nº factura, fecha, proveedor del catálogo o cuenta contrapartida) se marcan con ⚠ rojo y se agrupan al final. Se pueden archivar pero no exportar. El backend también valida para evitar enviar basura al ERP.",
+        "- **Para exportar más seguro**: las facturas con datos incompletos (sin nº factura, fecha, proveedor del catálogo o cuenta contrapartida) se marcan con ⚠ rojo y se agrupan al final. Se pueden archivar pero no exportar. El servidor también valida para evitar enviar datos incompletos al ERP.",
         "- **Barra de progreso de exportación persistente**: si navegas a otra vista mientras se exporta y vuelves, la barra sigue ahí. Las facturas en proceso suben al inicio de la tabla. Punto azul pulsante en el sidebar como indicador global de exportación en curso.",
-        "- **Animación de eliminación del ERP** integrada en el modal de detalle, con efecto visual de desconexión entre Agrofacturas y Hispatec.",
+        "- **Animación de eliminación del ERP** integrada en el modal de detalle, con efecto visual de desconexión entre Agrofacturas y el ERP.",
         "- **Sidebar con secciones colapsables** (Documentos / Catálogos / Herramientas) con animación de +/− simétrica al pasar el ratón. El estado se guarda entre sesiones.",
-        "- **Splash de carga** al arrancar el programa (pantalla con \\\"Cargando…\\\" en vez de la ventana de consola negra).",
+        "- **Splash de carga** al arrancar el programa (pantalla con \"Cargando…\" en vez de la ventana de consola negra).",
         "## Cambios",
-        "- **Sincronización ERP cada 2 minutos** (antes cada 30) con update condicional para que el log no spamee cuando no hay cambios. Las cuentas nuevas o modificadas en Hispatec aparecen en el programa casi al instante.",
-        "- **Reconciliación de exportadas y sync de cuentas grupo 7** ahora automáticos en backend (cada 10 y 30 min respectivamente). Quitados los botones manuales redundantes de Configuración.",
-        "- **Bug ERP corregido**: la búsqueda de duplicados ya no traía facturas de otra empresa por coincidencia parcial del nº — siempre filtra por Id_Centro real (resolviendo desde la tabla Centros).",
-        "- **Cuentas que terminaban en 0** (p.ej. 43000000020) ahora también se sincronizan correctamente. El filtro anterior las excluía por error.",
-        "- **Modal de papelera**: nuevo botón \\\"Vaciar papelera\\\" para borrar todas las archivadas de una vez.",
-        "- **Vista Proveedores/Clientes**: botón \\\"Exportar a Excel\\\" como desplegable con opción \\\"Todas las empresas\\\" o solo la seleccionada.",
+        "- **Sincronización con el ERP cada 2 minutos** (antes cada 30) con actualización condicional para que el log no se llene cuando no hay cambios. Las cuentas nuevas o modificadas en el ERP aparecen en el programa casi al instante.",
+        "- **Reconciliación de exportadas y sincronización de cuentas del grupo 7** ahora automáticas en el servidor (cada 10 y 30 min respectivamente). Quitados los botones manuales redundantes de Configuración.",
+        "- **Corrección en el ERP**: la búsqueda de duplicados ya no traía facturas de otra empresa por coincidencia parcial del nº — ahora filtra siempre por el centro contable real de la empresa.",
+        "- **Cuentas contables terminadas en 0** ahora también se sincronizan correctamente. El filtro anterior las excluía por error.",
+        "- **Modal de papelera**: nuevo botón \"Vaciar papelera\" para borrar todas las archivadas de una vez.",
+        "- **Vista Proveedores/Clientes**: botón \"Exportar a Excel\" como desplegable con opción \"Todas las empresas\" o solo la seleccionada.",
         "- **Empty state** con icono de carpeta para empresas sin facturas en gestión, en vez de solo texto plano.",
-        "- **Animación \\\"Cargando…\\\"** con puntos secuenciales en la vista Exportadas mientras se cargan datos."
+        "- **Animación \"Cargando…\"** con puntos secuenciales en la vista Exportadas mientras se cargan datos."
       ]
     },
     {
@@ -317,7 +317,7 @@
         "- **Mensajes más claros** al re-exportar: modal del programa con resumen separado (correctas / ya en ERP / errores). Adiós al alert nativo del navegador.",
         "## Cambios",
         "- El nombre del proveedor/cliente se toma siempre del catálogo cuando hay match — corrige automáticamente errores de OCR en el nombre extraído (por ejemplo, una letra final mal leída).",
-        "- Detección de duplicados en el ERP arreglada para facturas emitidas: ahora busca por serie y número, y resuelve correctamente el centro de la empresa.",
+        "- Detección de duplicados en el ERP arreglada para facturas emitidas: ahora busca por serie y número, y resuelve correctamente el centro contable de la empresa.",
         "- El botón hamburguesa del sidebar se posiciona justo debajo de la barra de pestañas en vez de pisar el contenido."
       ]
     },
