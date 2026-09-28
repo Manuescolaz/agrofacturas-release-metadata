@@ -2,7 +2,7 @@
   "schema_version": 1,
   "_que_es": "Metadatos PÚBLICOS y SANEADOS de las versiones de Agrofacturas. No contiene código, paquetes, enlaces de descarga ni datos de ningún cliente.",
   "producto": "agrofacturas",
-  "generado": "2026-09-28T15:11:42.324Z",
+  "generado": "2026-09-28T15:12:44.761Z",
   "latest": "1.1.1",
   "releases": [
     {
