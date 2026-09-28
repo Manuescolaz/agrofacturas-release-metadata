@@ -1,0 +1,414 @@
+{
+  "schema_version": 1,
+  "_que_es": "Metadatos PÚBLICOS y SANEADOS de las versiones de Agrofacturas. No contiene código, paquetes, enlaces de descarga ni datos de ningún cliente.",
+  "producto": "agrofacturas",
+  "generado": "2026-09-28T15:11:42.324Z",
+  "latest": "1.1.1",
+  "releases": [
+    {
+      "version": "1.1.1",
+      "published_at": "2026-09-21T10:21:07Z",
+      "title": "Versión 1.1.1",
+      "notes": [
+        "## Nuevo",
+        "- Inmovilizado: ahora se concilia automáticamente con ERPagro. Cruza los movimientos contables de las cuentas 21x con el módulo de Inmovilizado y marca cada uno como conciliado, pendiente de crear o con incidencias, con detalle, Excel e impresión. Sustituye al antiguo \"Confirmar\" manual.",
+        "- Elecciones del Consejo Rector: introducción de papeletas, resultados en directo, cierre de la elección, resultado final para proyectar y PDF con todos los candidatos. Las dos pantallas se actualizan en tiempo real entre dispositivos.",
+        "- Lista \"To do\" por apartado, con vista global y de administración.",
+        "## Mejoras",
+        "- Instalador de Mac actualizado (Agrofacturas-1.1.1.dmg). Quien tenga una versión anterior en Mac debe instalarlo una vez (los datos se conservan); a partir de ahí se actualiza desde la propia app.",
+        "- En Mac, si la app está en una ubicación de solo lectura, la actualización explica qué hacer en lugar de fallar sin más.",
+        "- Copia de seguridad: en Mac usa por defecto una carpeta local en lugar de la ruta de red de Windows.",
+        "## Correcciones",
+        "- Actualización en Mac: fallaba al descomprimir la nueva versión.",
+        "- Certificados de ventas brutas: ahora incluyen los anticipos del periodo (antes faltaba ese importe)."
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "published_at": "2026-09-16T07:03:40Z",
+      "title": "Versión 1.1.0",
+      "notes": [
+        "## Nuevo",
+        "- **Gestión de usuarios con permisos**: cada usuario tiene permisos individuales por vista y por acción (procesar, exportar, configurar…). Se configuran desde Admin › Usuarios.",
+        "- **Rol de solo lectura**: los usuarios con este rol pueden consultar toda la información pero no modificar nada. Los botones de acción se ocultan y la API rechaza las escrituras.",
+        "- **Control de acceso al buscador**: opción \"Buscador habilitado\" por usuario. Si está deshabilitado, el buscador sigue funcionando pero los resultados aparecen como líneas (─────) y no se pueden abrir. Los superadmin siempre ven los resultados reales.",
+        "- **Vista inicial por permisos**: al iniciar sesión, cada usuario entra directamente a la primera vista que tiene permitida en vez de siempre al inicio.",
+        "- **Fruta › Artículos**: nuevo módulo para dar de alta artículos de fruta en el ERP (Hispatec) clonando una plantilla existente. Soporta lotes de varios artículos en una sola operación, con validación completa y simulación previa antes de escribir.",
+        "- **Clonar familias**: al crear artículos de una familia nueva, se clona la familia plantilla con todas sus tablas dependientes (configuración de incidencias, características, datos complementarios, contabilización…) en una sola transacción.",
+        "- **Correspondencias de calibradora**: se crean automáticamente en todas las calibradoras habilitadas, leyendo y escribiendo el XML de configuración de cada dispositivo. Pestaña \"Calibradoras\" para activar o desactivar cada una.",
+        "- **Detección automática de artículo origen**: identifica el artículo genérico de la familia (el que se clasifica en los demás) a partir del histórico de correspondencias o por nombre.",
+        "- **Asistente de códigos**: al escribir un código muestra los bloques ocupados y los huecos disponibles. Para lotes, propone bloques correlativos y avisa si algún código del rango ya existe.",
+        "- **Nombres adaptados por familia**: al copiar artículos de otra familia o cambiar el nombre de la nueva, los nombres y descripciones se adaptan automáticamente sustituyendo la parte variable (variedad).",
+        "- **Imagen de fondo de la aplicación**: en Configuración › Apariencia, independiente de la imagen de fondo del login. Se aplica solo al área de contenido (no al menú lateral ni a tarjetas o modales).",
+        "## Mejoras",
+        "- El **Informe libro ventas** permite seleccionar varios socios a la vez con casillas de verificación.",
+        "- Nueva opción de exportación **\"Guardar en carpeta de socios\"** que deja el Excel directamente en la carpeta de red del socio."
+      ]
+    },
+    {
+      "version": "1.0.21",
+      "published_at": "2026-09-11T07:34:29Z",
+      "title": "Versión 1.0.21",
+      "notes": [
+        "## Nuevo",
+        "- **Previsiones socios** (antes Socios): muestra los kilos de fruta que cada socio tiene entregados y todavía sin facturar, con una columna por tipo de fruta.",
+        "- Casilla de **precio estimado por fruta**, con su importe en cada fruta, **TOTAL ESTIMADO** y **TOTAL PREVISTO BASE** (lo facturado más la estimación de lo que queda).",
+        "- El **Informe libro ventas** (antes Informe liquidaciones) consulta **todos los socios** cuando no seleccionas ninguno.",
+        "## Mejoras",
+        "- Menú lateral reorganizado: **CONTABILIDAD**, **MAESTROS**, **INFORMES** y **HERRAMIENTAS**. Punteo trimestral pasa a Contabilidad, y el informe, las previsiones de socios y los certificados a Informes.",
+        "- Al abrir el panel solo viene desplegada Contabilidad; el resto se recuerda como lo dejes.",
+        "- En Previsiones socios se ocultan las columnas de NIF, IVA e IMPORTE para dejar sitio a la previsión.",
+        "## Correcciones",
+        "- Las previsiones de socios **sumaban de menos**: faltaban los anticipos, que el ERP guarda aparte. Ahora la base imponible del año coincide exactamente con el informe del ERP.",
+        "- Los **kilos pendientes** se calculaban por la diferencia entre kilos recibidos y kilos llevados a albarán, y eso son mermas, no fruta pendiente: socios con todo facturado aparecían con miles de kilos pendientes. Ahora se mira si la recepción ha llegado a una factura.",
+        "- El punto de los miles se aplica también a importes de cuatro cifras (7.227,83 en vez de 7227,83).",
+        "- Los importes de las filas resaltadas por aviso de límite se leen correctamente sobre el color de fondo."
+      ]
+    },
+    {
+      "version": "1.0.20",
+      "published_at": "2026-09-10T05:48:44Z",
+      "title": "Versión 1.0.20",
+      "notes": [
+        "## Nuevo",
+        "- **Socios** (Catálogos): nueva sección con el listado de socios que han facturado en el año que elijas, con su NIF y lo que llevan facturado — base imponible, IVA e importe. Los números salen con el mismo criterio que el certificado de ventas brutas, así que cuadran entre pantallas. Buscador por número, nombre o NIF, y todas las columnas ordenables.",
+        "- **Tributación por socio**: asignas a cada socio su régimen desde la propia tabla. Los tipos los creas tú (el programa no trae ninguno), y se pueden renombrar y eliminar sin perder lo ya asignado. Puedes filtrar la lista por uno o varios tipos, o ver los que todavía no tienen ninguno.",
+        "- **Avisos de límite de la estimación objetiva**: tres importes con su color, editables y **distintos para cada año**. El socio que los alcance sale con la fila coloreada, comparando siempre la base imponible (sin IVA). Se aplican solo a los tipos de tributación con la campana activada, así que puedes llamar al régimen como quieras.",
+        "## Correcciones",
+        "- **Certificados**: ya se pueden emitir a los socios de un solo dígito. El ERP tiene socios con los números 1, 2, 3, 4, 6, 7 y 8 con facturas, y se estaban rechazando.",
+        "- La **vista previa del certificado** vuelve a verse en pantalla.",
+        "- La ficha \"Datos que saldrán en el certificado\" se estira hasta abajo, a la misma altura que la vista previa."
+      ]
+    },
+    {
+      "version": "1.0.19",
+      "published_at": "2026-09-09T10:24:25Z",
+      "title": "Versión 1.0.19",
+      "notes": [
+        "## Nuevo",
+        "- **Certificados** (Herramientas): nueva sección con el certificado de ventas brutas por socio. Eliges socio y periodo, revisas los datos en pantalla, ves el documento tal como va a quedar y lo descargas en **Word o PDF**. El Word se genera sobre la plantilla oficial, conservando logos, cabecera, pie, firma y sello; el PDF lo produce el propio Word, así que sale idéntico. El importe se escribe también en letra automáticamente.",
+        "- **Copia de seguridad automática de la base de datos**: cada noche a las 03:00 se guarda una copia en la carpeta de red, conservando las últimas 14. Si el ordenador estaba apagado a esa hora, la copia del día se hace al arrancar. En Configuración hay una tarjeta nueva con la última copia, la próxima y un botón para hacerla al momento.",
+        "- **Buscador de ajustes en Configuración**: escribe \"puerto\", \"correo\" o \"papelera\" y aparecen solo las tarjetas que tratan de eso, de cualquier sección.",
+        "- **Plantillas de columnas en Informe liquidaciones**: Completo, Resumido y Por factura, más las que quieras guardar tú. Ninguna columna se elimina del informe: se ocultan y se pueden recuperar cuando haga falta. El Excel sale con las mismas columnas que la pantalla.",
+        "## Mejoras",
+        "- En Informe liquidaciones, la base imponible, el IVA, la retención y el total líquido se reparten **por tipo de fruta** en vez de repetir el total de la factura en todas las líneas. El reparto cuadra al céntimo con el importe de la factura.",
+        "- El botón de exportar a Excel del informe queda alineado a la derecha."
+      ]
+    },
+    {
+      "version": "1.0.18",
+      "published_at": "2026-09-09T06:04:17Z",
+      "title": "Versión 1.0.18",
+      "notes": [
+        "## Nuevo",
+        "- Nueva pantalla **Informe liquidaciones** (Herramientas): consulta el detalle de las liquidaciones de un socio entre dos fechas, con una línea por factura y artículo de fruta. El buscador de socio acepta número, nombre o NIF, y solo muestra socios que tienen liquidaciones. Incluye exportación a Excel con las mismas columnas.",
+        "## Correcciones",
+        "- Combinar varios documentos en una sola factura ya funciona aunque hayan llegado por canales distintos (correo, escáner o WhatsApp); antes exigía que fueran del mismo contacto y no hacía nada.",
+        "- Al enlazar una factura con un asiento del ERP que ya estaba enlazado, la factura duplicada se archiva sola para que no aparezca dos veces en el Punteo trimestral. Si la anterior estaba punteada, la nueva conserva el punteo y su anotación."
+      ]
+    },
+    {
+      "version": "1.0.17",
+      "published_at": "2026-09-03T11:00:39Z",
+      "title": "Versión 1.0.17",
+      "notes": [
+        "## Nuevo",
+        "- Marca \"Incidencia\" en cualquier factura, con hilo de comentarios (editables/eliminables) accesible desde una pestaña en el previsualizador. Nueva vista \"Incidencias\" en el sidebar.",
+        "- Inmovilizado dividido en pestañas Revisión / Creado. Al confirmar una, copia el archivo a la carpeta de red configurada, con reintento si falla la copia por red.",
+        "## Mejoras",
+        "- El aviso de \"trimestre cerrado\" al editar una factura ya contabilizada ahora deja continuar confirmando, en vez de bloquear sin opción.",
+        "- Editar una factura ya exportada desde Inmovilizado o Incidencias ya no redirige a Exportadas.",
+        "- Corrección del signo en abonos/rectificativas de facturas intercompany del ERP; se añaden los anticipos de cosecha al listado intercompany.",
+        "## Correcciones",
+        "- Los contadores de \"Para exportar\" (tabla y badges del sidebar) ya excluyen las facturas marcadas como incidencia."
+      ]
+    },
+    {
+      "version": "1.0.16",
+      "published_at": "2026-07-16T10:01:32Z",
+      "title": "Versión 1.0.16",
+      "notes": [
+        "## Punteo trimestral / Informe PDF",
+        "- **Facturas de venta solo en el ERP**: el informe ahora detecta también facturas de venta contabilizadas directamente en Hispatec (numeración propia, sin pasar por Agrofacturas) que antes no aparecían — solo se detectaban las de compra y las de la cooperativa. Se mezclan con el resto igual que las de compra, con su desglose de IVA y CIF.",
+        "## Exportación al ERP",
+        "- **Libro de IVA de compras siempre a \"Compras\"**: las facturas de compra (incluidas las de inversión/inmovilizado) se exportan ahora siempre con Libro de IVA = Compras, en vez de depender de la cuenta de contrapartida sugerida (que en Hispatec podía clasificarlas como Gastos o Inversiones aunque fueran compras normales).",
+        "## Inmovilizado",
+        "- **Columnas ordenables**: se puede ordenar la tabla por cualquier columna.",
+        "- **Imprimir / Exportar a Excel**: nuevos botones para imprimir (o guardar como PDF) y descargar en Excel el listado de facturas de inmovilizado."
+      ]
+    },
+    {
+      "version": "1.0.15",
+      "published_at": "2026-07-15T11:53:13Z",
+      "title": "Versión 1.0.15",
+      "notes": [
+        "## Fiabilidad ERP",
+        "- **Fix crítico de concurrencia**: cada consulta al SQL Server del ERP usa ahora su propia conexión aislada, en vez de compartir una conexión global entre llamadas simultáneas. Evitaba errores intermitentes por cruce de credenciales/base de datos cuando había varias operaciones al ERP en paralelo.",
+        "- **Duplicados con el ERP más precisos**: cuando varios documentos comparten el mismo número de factura (p. ej. distintos clientes o años), ahora se elige el candidato correcto por importe y fecha en vez del primero que aparece. También se corrige la búsqueda de duplicados en facturas de venta.",
+        "## Punteo trimestral",
+        "- **Revisión de duplicados**: botón para revisar de golpe todas las facturas del trimestre en busca de duplicados (bot + ERP), ver la factura correspondiente en el ERP, y marcar \"no es duplicada\" tras revisarla manualmente.",
+        "- **Facturas solo en el ERP**: detecta facturas de compra y venta contabilizadas directamente en el ERP (incluidas las operaciones automáticas con la cooperativa) que nunca pasaron por Agrofacturas. Se muestran mezcladas con el resto en el informe PDF, con su desglose de IVA y CIF.",
+        "- **Informe PDF**: desgloses de IVA alineados a la derecha y nuevo resumen de IVA del trimestre (total soportado, repercutido y líquido a pagar/compensar).",
+        "## Retenciones",
+        "- **Facturas de venta excluidas**: nunca se incluyen en el listado ni en los envíos de Retenciones, ya que no aplica.",
+        "- **Copia en Enviados**: al mandar un correo de Retenciones, se guarda automáticamente una copia en la carpeta \"Enviados\" de la cuenta de correo.",
+        "## Inmovilizado",
+        "- **Columnas ordenables**: ahora se puede ordenar la tabla por cualquier columna, igual que en el resto de vistas."
+      ]
+    },
+    {
+      "version": "1.0.14",
+      "published_at": "2026-07-10T12:27:01Z",
+      "title": "Versión 1.0.14",
+      "notes": [
+        "## Punteo trimestral",
+        "- **Aviso de facturas duplicadas**: si al editar una factura desde el propio panel de punteo (p. ej. cambiar el nº de factura) pasa a marcarse como posible duplicada, ahora se ve claramente: badge en la cabecera, aviso en rojo con el motivo, icono ⚠ en el listado, y un mensaje emergente inmediato si el cambio la acaba de convertir en duplicada.",
+        "- **Zoom en imágenes**: Ctrl/Cmd + rueda ahora hace zoom sobre la imagen de la factura (antes se colaba como zoom de toda la ventana). Arrastrar cuando hay zoom mueve la imagen; doble clic resetea el zoom. Los PDF no se han tocado, ya funcionaban bien.",
+        "- **Empresas sin facturas en verde**: en el listado de empresas, además de las que tienen el trimestre 100% punteado (✓ verde), ahora también se marcan en verde las que no tienen ninguna factura en ese trimestre, con el símbolo **ø** para diferenciarlas."
+      ]
+    },
+    {
+      "version": "1.0.13",
+      "published_at": "2026-07-10T09:28:19Z",
+      "title": "Versión 1.0.13",
+      "notes": [
+        "## Correcciones importantes",
+        "- **Fallo de concurrencia con el ERP**: todas las conexiones a SQL Server (Hispatec y Comunicaciones) usaban la conexión \"global\" de la librería, que se comparte entre operaciones simultáneas. Si dos operaciones del ERP coincidían en el tiempo, una podía acabar usando por error la conexión de la otra (p. ej. intentar guardar en Comunicaciones usando la conexión abierta a Hispatec), provocando errores como \"Invalid object name\" y sincronizaciones fallidas. Ahora cada operación usa su propia conexión aislada.",
+        "- **\"Eliminar del ERP\" dejaba el badge \"EXPORTADA\" pegado**: al borrar una factura de Hispatec desde el programa, se limpiaba el ID del ERP pero no la fecha de exportación, así que la factura seguía apareciendo como exportada aunque ya no existiera en Hispatec. Ahora vuelve correctamente a \"Para exportar\".",
+        "- **Detección de duplicados en facturas de venta**: dejó de basarse en la numeración interna de Hispatec (Serie/Número) y ahora busca por la columna real donde Hispatec guarda el nº de factura del cliente (columna \"Factura\"), detectando automáticamente qué columna es en cada instalación.",
+        "- Nueva validación antes de exportar: si la cuenta contrapartida no existe en Hispatec para esa empresa concreta (las cuentas son específicas por empresa), se avisa con un mensaje claro en vez de dejar que el ERP la rechace con un error críptico.",
+        "- Cuando una factura queda marcada como posible duplicada en el ERP, ahora siempre se pregunta \"enlazar o contabilizar\" de forma consistente, también en reintentos tras un rechazo previo (antes en ese caso se enlazaba en silencio).",
+        "## Punteo trimestral",
+        "- Se puede **editar la factura directamente** desde el propio panel de punteo (mismo formulario que en el resto del programa), sin salir a una ventana aparte.",
+        "- Nuevo listado **\"Facturas del trimestre\"** en el panel, con scroll propio, que se puede **ordenar por fecha, tipo, proveedor/cliente o importe** (por defecto: proveedor y, dentro del mismo, fecha ascendente). Click en cualquier fila para saltar a esa factura.",
+        "- Las empresas con el trimestre 100% punteado se resaltan en verde en el listado de selección.",
+        "## Combinar y reordenar documentos",
+        "- Al combinar varios documentos de \"Pendiente\" en una sola factura, ahora se puede **elegir el orden** (arrastrando o con flechas) antes de confirmar, con vista previa en vivo en el panel de la derecha.",
+        "- Nueva función para **reordenar las páginas de un PDF** ya existente (arrastrar o flechas), con vista previa en vivo.",
+        "## Otras mejoras",
+        "- Rotar e imprimir ahora también funcionan para documentos PDF en la previsualización (antes solo para imágenes).",
+        "- Aviso visual (spinner) en el botón \"Guardar cambios\" mientras se procesa la edición y su sincronización con el ERP.",
+        "- El asunto por defecto de las retenciones ahora sustituye los datos reales (proveedor, empresa, número) al enviar una sola factura.",
+        "- Las facturas de venta con retención ya no se pueden enviar por correo desde Retenciones (solo se envían las de compra).",
+        "- Corrección de textos y filtros menores en Retenciones y Exportadas."
+      ]
+    },
+    {
+      "version": "1.0.12",
+      "published_at": "2026-07-07T12:24:00Z",
+      "title": "Versión 1.0.12",
+      "notes": [
+        "## Nuevo",
+        "- Sección **Retenciones**: lista las facturas exportadas al ERP con retención de IRPF y permite enviarlas por correo (juntas en un solo email o una a una) reutilizando la cuenta de correo ya configurada para recibir facturas. Marca la fecha de envío de cada una. Si a alguna factura le falta el archivo, avisa y deja continuar solo con las que sí lo tienen.",
+        "- Filtro **\"Con retenciones\"** y selector de **trimestre contable** en la vista Exportadas.",
+        "- **Rotación de imagen** en el modo Punteo, con la misma estética que la previsualización normal.",
+        "## Correcciones",
+        "- Los **Contactos** con varias empresas asignadas dejaban fuera de la vista los botones de activar/editar. Ahora la columna de empresas hace salto de línea en vez de empujar el resto de la tabla.",
+        "- La cuenta de cliente **43000000000** se excluía siempre al sincronizar terceros desde Hispatec, aunque en algunas empresas es un cliente real (p. ej. la propia cooperativa). Ahora solo se excluye cuando no tiene ningún sujeto asociado.",
+        "- La detección de **duplicados del ERP en facturas de venta** dejó de depender de la cuenta contable del cliente (poco fiable en Hispatec) y ahora usa Centro + Serie + Número, con reconocimiento de formatos de numeración alternativos.",
+        "- Una factura exportada, luego eliminada del ERP y reclasificada a otro tipo de documento (p. ej. a persona física) se quedaba con el aviso de \"ya exportada\" y bloqueada para editar, aunque ya no estuviera en Exportadas.",
+        "## Mejoras",
+        "- La **fecha límite del trimestre** (para calcular la fecha contable) y el **bloqueo de edición de facturas de trimestres cerrados** ahora son dos ajustes independientes en Ajustes › Contabilidad. El bloqueo de edición usa el día legal de presentación del 303 (20 de cada mes de presentación) y se puede desactivar."
+      ]
+    },
+    {
+      "version": "1.0.11",
+      "published_at": "2026-07-03T12:30:02Z",
+      "title": "Versión 1.0.11",
+      "notes": [
+        "## Correcciones",
+        "- La sincronización de terceros dejaba fuera la cuenta de cliente **43000000000**, asumiendo que era una cabecera genérica. En realidad es un cliente real en muchas empresas (la cooperativa figura como cliente de cada empresa socia). Ahora solo se excluyen las cabeceras genéricas que no tienen ningún sujeto asociado, de modo que esa cuenta aparece correctamente en el catálogo de Proveedores / Clientes.",
+        "- La detección de duplicados contra el ERP fallaba en las **facturas de venta**: filtraba por la cuenta contable del cliente, que en Hispatec no siempre coincide con la del catálogo. Ahora las ventas se comprueban por Centro + Serie + Número (que identifican de forma única una factura emitida), con un fallback adicional para el formato de numeración \"2F/2025\".",
+        "## Mejoras",
+        "- Nuevo botón para **sincronizar la cuenta de contrapartida** desde Hispatec: si corriges la cuenta directamente en el ERP después de exportar, al sincronizar se actualiza también en Agrofacturas para que el dato refleje lo realmente contabilizado."
+      ]
+    },
+    {
+      "version": "1.0.10",
+      "published_at": "2026-06-26T12:27:15Z",
+      "title": "Versión 1.0.10",
+      "notes": [
+        "## Nuevo",
+        "- Sección \"Punteo trimestral\" rediseñada: año y trimestre en una sola fila, resumen con desglose de Compras/Ventas (cada uno en su propia tarjeta con borde de color) y listado de facturas del período con botón de previsualización, todo con scroll interno",
+        "- Filtro \"Con errores\" en la vista Exportadas, igual que \"Duplicadas\" en Para exportar",
+        "- Botón \"Sincronizar con ERP\" en Empresas para rellenar códigos ERP que falten, con animación y detalle de empresas sin match (clic para resaltar la fila)",
+        "- Columna \"ID ERP\" ordenable en Exportadas (los sin código van primero en orden ascendente)",
+        "## Mejoras",
+        "- Botones \"Sincronizar IDs ERP\" + \"Rellenar enlaces ERP\" unificados en un único botón \"Sincronizar con ERP\" con animación",
+        "- Modal de revisión de duplicados ERP: aparece siempre que el bot detecta un posible duplicado en el ERP al exportar (antes solo si el importe no coincidía), mostrando ambos datos lado a lado para elegir entre enlazar o contabilizar",
+        "- Al enlazar una factura a un documento ya existente en el ERP, se sincroniza automáticamente su fecha contable y se recoloca el archivo en la carpeta de trimestre correcta",
+        "- Las facturas ya contabilizadas en el ERP con fecha de un trimestre cerrado quedan bloqueadas para edición",
+        "- Botón \"Puntear\" deshabilitado visualmente hasta que hay empresa y trimestre con facturas seleccionados",
+        "## Correcciones",
+        "- La detección de duplicados contra el ERP en tiempo real fallaba casi siempre que el proveedor ya estaba reconocido localmente, por enlazar con una columna casi siempre vacía en Hispatec (Id_Proveedor/Id_Cliente) en vez de Id_CuentaContable",
+        "- La comparación de nº de documento no toleraba espacios internos distintos (ej. \"7/58\" vs \"7 / 58\"), perdiendo duplicados reales",
+        "- Al enlazar automáticamente un duplicado confirmado, no se marcaba como exportada (fecha_exportacion), dejando la factura atascada en \"Para exportar\" sin aviso",
+        "- La ruta del archivo en la tabla de enlace del ERP quedaba obsoleta si el archivo se movía después de exportar (p.ej. al corregir la fecha contable); ahora se refresca automáticamente",
+        "- Estado vacío del filtro \"Con errores\" en Exportadas sin icono, ahora consistente con el resto de la app"
+      ]
+    },
+    {
+      "version": "1.0.9",
+      "published_at": "2026-06-19T08:14:11Z",
+      "title": "Versión 1.0.9",
+      "notes": [
+        "## Nuevo",
+        "- Botón «Sincronizar con ERP» que unifica la sincronización de IDs y el registro de enlaces en `la tabla de enlace del ERP`, con animación dentro del propio botón",
+        "## Mejoras",
+        "- La animación de «Eliminar del ERP» ahora va en dirección correcta (ERP → App)",
+        "- Al asignar empresa desde la tabla, el modal de edición ya muestra la empresa actualizada",
+        "- Los campos del modal de edición se adaptan al tipo de documento «Contrato» (etiquetas específicas, campos irrelevantes ocultos)",
+        "- Todas las secciones de Configuración arrancan cerradas por defecto",
+        "## Correcciones",
+        "- El aviso «POSIBLE FACTURA DUPLICADA» ahora desaparece automáticamente al archivar o eliminar la otra factura",
+        "- Eliminada la funcionalidad de anonimización de datos personales (causaba pérdida irreversible de datos)"
+      ]
+    },
+    {
+      "version": "1.0.8",
+      "published_at": "2026-06-12T09:42:12Z",
+      "title": "Versión 1.0.8",
+      "notes": [
+        "## Mejoras",
+        "- **Seguridad reforzada**: Content-Security-Policy completa (frame-ancestors, object-src none), X-Frame-Options SAMEORIGIN, rate limiting en login (5 intentos / 15 min), sesiones persistentes en SQLite, sanitización de errores en respuestas HTTP.",
+        "- **Cumplimiento RGPD**: inventario de datos personales, exportación JSON (Art. 15 y 20), anonimización individual (Art. 17), retención automática configurable, política de privacidad editable. Accesible desde Configuración → Privacidad y datos.",
+        "- **Licencia propietaria** (LICENSE) y README completo en español con documentación de features, instalación, arquitectura y atajos de teclado.",
+        "- **Preview al editar empresa**: al pulsar en la celda EMPRESA de la tabla de pendientes, se abre automáticamente la previsualización del documento. Al confirmar con Enter y saltar al siguiente, el preview se actualiza.",
+        "## Cambios",
+        "- **Fix preview PDF en Edge**: cabeceras no-cache en el endpoint del visor PDF y tabindex en iframe para que Edge no use respuestas cacheadas con la política antigua.",
+        "- **Fix sincronización ERP**: todas las empresas se mapean correctamente con id_erp. Los proveedores importados del ERP (origen_erp=1) ya no se anonimizan por error. getEstado() lee de config.json en vez de solo.env. Los proveedores \"promovidos\" (manual→ERP) se cuentan como actualizados en la UI.",
+        "- **Protección contra anonimización accidental**: purgarDatosPersonalesAntiguos excluye proveedores del ERP. anonimizarProveedor rechaza proveedores con origen_erp=1. El flag { ejecutar: true } es obligatorio para ejecutar la purga.",
+        "- **Config de conexiones**: el estado del ERP y Comunicaciones en /api/connections lee de config.json correctamente (antes dependía solo de variables de entorno)."
+      ]
+    },
+    {
+      "version": "1.0.7",
+      "published_at": "2026-05-29T10:00:50Z",
+      "title": "Versión 1.0.7",
+      "notes": [
+        "## Mejoras",
+        "- **Resumen trimestral en PDF** desde Punteo trimestral. Lo abre en una pestaña con cabecera de empresa y periodo, desglose IVA por tramos para el modelo 303, tablas separadas de compras y ventas, retenciones, y resultado IVA destacado (a ingresar / a compensar). Solo incluye facturas exportadas (contabilizadas).",
+        "- **Visor PDF mejorado**: zoom con Ctrl+rueda (la rueda sola hace scroll normal por las páginas), arrastra para moverte cuando hay zoom in, indicador visual del %, doble clic resetea zoom.",
+        "- **Para exportar más seguro**: las facturas con datos incompletos (sin nº factura, fecha, proveedor del catálogo o cuenta contrapartida) se marcan con ⚠ rojo y se agrupan al final. Se pueden archivar pero no exportar. El backend también valida para evitar enviar basura al ERP.",
+        "- **Barra de progreso de exportación persistente**: si navegas a otra vista mientras se exporta y vuelves, la barra sigue ahí. Las facturas en proceso suben al inicio de la tabla. Punto azul pulsante en el sidebar como indicador global de exportación en curso.",
+        "- **Animación de eliminación del ERP** integrada en el modal de detalle, con efecto visual de desconexión entre Agrofacturas y Hispatec.",
+        "- **Sidebar con secciones colapsables** (Documentos / Catálogos / Herramientas) con animación de +/− simétrica al pasar el ratón. El estado se guarda entre sesiones.",
+        "- **Splash de carga** al arrancar el programa (pantalla con \\\"Cargando…\\\" en vez de la ventana de consola negra).",
+        "## Cambios",
+        "- **Sincronización ERP cada 2 minutos** (antes cada 30) con update condicional para que el log no spamee cuando no hay cambios. Las cuentas nuevas o modificadas en Hispatec aparecen en el programa casi al instante.",
+        "- **Reconciliación de exportadas y sync de cuentas grupo 7** ahora automáticos en backend (cada 10 y 30 min respectivamente). Quitados los botones manuales redundantes de Configuración.",
+        "- **Bug ERP corregido**: la búsqueda de duplicados ya no traía facturas de otra empresa por coincidencia parcial del nº — siempre filtra por Id_Centro real (resolviendo desde la tabla Centros).",
+        "- **Cuentas que terminaban en 0** (p.ej. 43000000020) ahora también se sincronizan correctamente. El filtro anterior las excluía por error.",
+        "- **Modal de papelera**: nuevo botón \\\"Vaciar papelera\\\" para borrar todas las archivadas de una vez.",
+        "- **Vista Proveedores/Clientes**: botón \\\"Exportar a Excel\\\" como desplegable con opción \\\"Todas las empresas\\\" o solo la seleccionada.",
+        "- **Empty state** con icono de carpeta para empresas sin facturas en gestión, en vez de solo texto plano.",
+        "- **Animación \\\"Cargando…\\\"** con puntos secuenciales en la vista Exportadas mientras se cargan datos."
+      ]
+    },
+    {
+      "version": "1.0.6",
+      "published_at": "2026-05-27T12:58:49Z",
+      "title": "Versión 1.0.6",
+      "notes": [
+        "## Mejoras",
+        "- **Visor PDF propio** basado en PDF.js: los PDFs siempre se ven completos, sin recortes del visor nativo del navegador. En el panel lateral se ajusta al ancho; en la ventana flotante la primera página entera cabe en el viewport.",
+        "- **Navegación con flechas** (▲▼) y teclas ↑/↓ en la ventana flotante para moverte entre facturas sin volver al panel. El resaltado en el panel se sincroniza automáticamente.",
+        "- **Re-exportación inteligente** cuando el ERP rechaza por duplicada: el programa busca el documento existente en el ERP y registra automáticamente la ubicación del archivo en la tabla de enlace. Ya no hay que hacerlo a mano.",
+        "- **Mensajes más claros** al re-exportar: modal del programa con resumen separado (correctas / ya en ERP / errores). Adiós al alert nativo del navegador.",
+        "## Cambios",
+        "- El nombre del proveedor/cliente se toma siempre del catálogo cuando hay match — corrige automáticamente errores de OCR en el nombre extraído (por ejemplo, una letra final mal leída).",
+        "- Detección de duplicados en el ERP arreglada para facturas emitidas: ahora busca por serie y número, y resuelve correctamente el centro de la empresa.",
+        "- El botón hamburguesa del sidebar se posiciona justo debajo de la barra de pestañas en vez de pisar el contenido."
+      ]
+    },
+    {
+      "version": "1.0.5",
+      "published_at": "2026-05-26T12:56:29Z",
+      "title": "Versión 1.0.5",
+      "notes": [
+        "## Nuevo",
+        "- Sistema de pestañas tipo navegador: botón + en el sidebar para abrir vistas en pestañas independientes",
+        "- Cada pestaña conserva su contenido y posición de scroll al cambiar entre ellas",
+        "- Pestañas duplicables (#1, #2...) con numeración automática",
+        "- Doble click en pestaña para renombrarla con un sufijo personalizado",
+        "- Cierre de pestañas con × o click medio del ratón",
+        "## Mejoras",
+        "- Tablas rediseñadas: filas compactas, números alineados a la derecha, cabeceras sticky, zebra-striping",
+        "- Selector de columnas corregido en todas las vistas (cada tabla muestra solo sus columnas reales)",
+        "- Eliminado código ERP redundante del nombre de proveedor en tablas",
+        "- Eliminada info de contacto repetida en la celda de proveedor/cliente",
+        "- Panel de atajos de teclado: botón × para cerrar y tecla Esc",
+        "- Banner de actualización degradado azul→verde, no empuja el contenido",
+        "- Botón \"Ver cambios\" abre el historial de cambios completo",
+        "- Badge \"Nueva\" verde en el historial para la versión disponible",
+        "- Spinner de actualización transiciona de azul a verde",
+        "- Modal de actualización con botón degradado azul→verde"
+      ]
+    },
+    {
+      "version": "1.0.4",
+      "published_at": "2026-05-25T14:54:33Z",
+      "title": "Versión 1.0.4",
+      "notes": [
+        "## Nuevo",
+        "- Buscador rápido Spotlight (Ctrl+K): busca facturas, proveedores, empresas y contactos desde cualquier vista",
+        "## Mejoras",
+        "- WhatsApp: reconexión silenciosa en micro-cortes (sin parpadeo ni spam en consola)",
+        "- Baileys actualizado a rc13",
+        "## Correcciones",
+        "- La ventana de consola vieja ya no se queda abierta tras actualizar"
+      ]
+    },
+    {
+      "version": "1.0.3",
+      "published_at": "2026-05-22T11:29:25Z",
+      "title": "Version 1.0.3",
+      "notes": [
+        "## Mejoras",
+        "- Barra lateral reorganizada en secciones",
+        "- Auditoría más clara: etiquetas por estado, filas desplegables y PDFs divididos muestran sus partes",
+        "- Favicon en la pestaña del navegador",
+        "- Historial de cambios con mejor formato visual",
+        "- Animación de progreso al exportar facturas al ERP",
+        "## Cambios",
+        "- Las reacciones de WhatsApp ahora funcionan también con mensajes antiguos",
+        "- Eliminado ruido en consola de libsignal",
+        "- Corregido sidebar cortado cuando hay banner de actualización"
+      ]
+    },
+    {
+      "version": "1.0.2",
+      "published_at": "2026-05-22T09:00:11Z",
+      "title": "Versión 1.0.2",
+      "notes": [
+        "## Mejoras",
+        "- Onboarding automático en primera ejecución",
+        "## Cambios",
+        "- Corregido esquema SQLite en instalaciones nuevas",
+        "- Corregido build del instalador"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "published_at": "2026-05-21T13:00:32Z",
+      "title": "Versión 1.0.1",
+      "notes": [
+        "## Mejoras",
+        "- Wizard de configuración para el primer arranque",
+        "- Historial de cambios dentro de la app con timeline visual",
+        "## Cambios",
+        "- Corregida la recepción de mensajes WhatsApp con formato LID",
+        "- Mejorado el sistema de actualización"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "published_at": "2026-05-21T09:11:30Z",
+      "title": "Versión 1.0.0",
+      "notes": [
+        "## Cambios",
+        "- Primera versión de Agrofacturas con sistema de actualizaciones"
+      ]
+    }
+  ]
+}
