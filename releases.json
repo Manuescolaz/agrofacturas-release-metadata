@@ -2,7 +2,7 @@
   "schema_version": 1,
   "_que_es": "Metadatos PÚBLICOS y SANEADOS de las versiones de Agrofacturas. No contiene código, paquetes, enlaces de descarga ni datos de ningún cliente.",
   "producto": "agrofacturas",
-  "generado": "2026-10-08T10:12:25.859Z",
+  "generado": "2026-10-08T11:09:45.851Z",
   "latest": "1.1.5",
   "releases": [
     {
@@ -19,7 +19,7 @@
         "- **Facturación de ventas**: un solo botón «Añadir documento» para adjuntar un PDF o vincular una factura de venta ya registrada, con vista previa, y el mismo diálogo para sustituir el PDF con motivo. La lista de clientes muestra sólo cuentas de cliente, ordenadas por número de cuenta.",
         "- **Windows**: la ventana de Agrofacturas aparece en la barra de tareas con su propio icono (nítido) en vez del del navegador, y al anclarla arranca el programa completo. La DEMO tiene su propio botón y no se agrupa con la normal. Icono del programa redibujado.",
         "- **Arranque más rápido**: la recolocación de documentos al arrancar ya no recorre la carpeta de red factura a factura.",
-        "- **Actualización**: antes de instalar, la confirmación muestra los avisos «Antes de actualizar» de la versión.",
+        "- **Aviso de actualización rediseñado**: la franja superior enseña el paso de la versión instalada a la nueva, la confirmación incluye los avisos «Antes de actualizar» de la versión, y la pantalla de progreso avanza con el mismo degradado. Con el tema «Tinta» sigue su estilo. El botón To-do ya no tapa la franja.",
         "- **Informe de auditoría**: con el mismo diseño que el resto del programa.",
         "## Correcciones",
         "- **Documentos al arrancar**: un archivo con sufijo (`_2`) ya no cambia de nombre en cada arranque, y si mover un documento falla, la copia de respaldo nunca sustituye el documento de otra factura.",
