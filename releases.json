@@ -2,9 +2,27 @@
   "schema_version": 1,
   "_que_es": "Metadatos PÚBLICOS y SANEADOS de las versiones de Agrofacturas. No contiene código, paquetes, enlaces de descarga ni datos de ningún cliente.",
   "producto": "agrofacturas",
-  "generado": "2026-10-08T11:31:14.055Z",
-  "latest": "1.1.6",
+  "generado": "2026-10-08T13:18:10.846Z",
+  "latest": "1.1.7",
   "releases": [
+    {
+      "version": "1.1.7",
+      "published_at": "2026-10-08T13:17:57Z",
+      "title": "Versión 1.1.7",
+      "notes": [
+        "## Nuevo",
+        "- **Facturación de ventas: plantillas del PDF.** Además de la clásica, las plantillas «Tradicional» y «Tinta». Solo cambian el aspecto: los datos e importes son los mismos. Se elige en la propia factura, se recuerda la última usada en cada empresa y una factura emitida conserva la plantilla con la que se emitió.",
+        "- **Facturación de ventas: vista previa en vivo.** Con el visor abierto, el PDF del borrador se actualiza mientras se edita, sin guardar nada.",
+        "## Mejoras",
+        "- **Facturación de ventas: cuentas de cobro.** Se ofrecen todas las cuentas bancarias de la empresa, también las de su ficha de cliente/proveedor en el ERP, y no solo la marcada como habitual. Cada cuenta sale una sola vez.",
+        "- **Proveedor con el CIF mal leído.** Si el CIF leído de la factura no es válido y el nombre o un CIF casi idéntico coinciden con un proveedor del catálogo, se empareja con él y se guarda el CIF correcto del catálogo. Un CIF ilegible ya no se copia nunca a la ficha de un proveedor.",
+        "- **Tema «Tinta»:** la ventana de posible duplicado en el ERP sigue su estilo.",
+        "## Antes de actualizar",
+        "- Al arrancar se aplica una migración de la base de datos que solo añade una columna (la plantilla del PDF de ventas). No modifica datos existentes.",
+        "- Las novedades de ventas solo se ven con el módulo de Facturación de ventas activado.",
+        "Pruebas: 1149 de 1149 (estándar). Las de integración con el ERP: 5 superadas y 42 saltadas por no tener el ERP configurado en el equipo de publicación. Instalador de Windows probado instalando, abriendo la DEMO y desinstalando."
+      ]
+    },
     {
       "version": "1.1.6",
       "published_at": "2026-10-08T11:31:10Z",
