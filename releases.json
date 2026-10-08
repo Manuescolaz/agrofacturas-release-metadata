@@ -2,9 +2,22 @@
   "schema_version": 1,
   "_que_es": "Metadatos PÚBLICOS y SANEADOS de las versiones de Agrofacturas. No contiene código, paquetes, enlaces de descarga ni datos de ningún cliente.",
   "producto": "agrofacturas",
-  "generado": "2026-10-08T11:09:45.851Z",
-  "latest": "1.1.5",
+  "generado": "2026-10-08T11:31:14.055Z",
+  "latest": "1.1.6",
   "releases": [
+    {
+      "version": "1.1.6",
+      "published_at": "2026-10-08T11:31:10Z",
+      "title": "Versión 1.1.6",
+      "notes": [
+        "## Mejoras",
+        "- **Pantalla «Actualizando…»**: muestra la versión de origen y la de destino, una barra de avance y los pasos de la actualización (descargar y comprobar, aplicar, reiniciar y volver) con su estado y el tiempo transcurrido. Con el tema «Tinta» sigue su estilo: papel cuadriculado, ficha con filete de tinta y avance hacia el verde señal. Si la actualización no se puede confirmar, marca en rojo el paso en el que se quedó.",
+        "## Antes de actualizar",
+        "- La pantalla nueva se verá a partir de la siguiente actualización: la pantalla de progreso la dibuja la versión que ya está instalada.",
+        "- No hay cambios en la base de datos ni en la configuración.",
+        "Pruebas: 1128 (estándar; una prueba de tiempos falló una vez por carga y pasa 3 de 3 sola). Instalador de Windows probado instalando, abriendo la DEMO y desinstalando."
+      ]
+    },
     {
       "version": "1.1.5",
       "published_at": "2026-10-08T10:11:51Z",
