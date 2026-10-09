@@ -2,9 +2,35 @@
   "schema_version": 1,
   "_que_es": "Metadatos PÚBLICOS y SANEADOS de las versiones de Agrofacturas. No contiene código, paquetes, enlaces de descarga ni datos de ningún cliente.",
   "producto": "agrofacturas",
-  "generado": "2026-10-08T13:18:10.846Z",
-  "latest": "1.1.7",
+  "generado": "2026-10-09T12:29:16.751Z",
+  "latest": "1.1.8",
   "releases": [
+    {
+      "version": "1.1.8",
+      "published_at": "2026-10-09T12:29:02Z",
+      "title": "Versión 1.1.8",
+      "notes": [
+        "## Nuevo",
+        "- **Auditoría: correos con enlace.** Muchos proveedores no adjuntan la factura sino un enlace para descargarla. Ahora esos correos se detectan y se marcan en Auditoría como pendientes, descargados o descartados, también los recibidos antes. Desde la fila se puede subir el PDF a mano o pedir que se descargue solo; un botón intenta descargar todos los pendientes en segundo plano. Solo se descarga al pulsar, solo por conexión segura, nunca desde la red interna y solo si lo recibido es un PDF de verdad. Hay sitios que no lo permiten (enlaces caducados, que piden datos del titular o con protección anti-robots): ahí hay que pedir la factura adjunta.",
+        "- **Para exportar: filtro «Faltan datos»**, que deja solo las facturas a las que les falta algo para poder exportarse. Se combina con el de duplicadas.",
+        "- **Relación proveedor-empresa: teléfono fijo y móvil** de cada proveedor.",
+        "- **Autorizaciones:** al añadir un autorizado, el filtro enseña también a los autorizados que no son trabajadores en nóminas (el propio socio, personas ajenas a la plantilla), marcados como tales.",
+        "## Mejoras",
+        "- **Tema «Tinta»:** la pantalla de carga al arrancar y el punteo trimestral siguen su estilo. El botón del To do se pone entero en verde cuando hay tareas.",
+        "- **Correo:** un PDF adjunto sin extensión en el nombre ya se reconoce como documento.",
+        "- Botones de Inmovilizado y del bloque ERP de Configuración con el mismo tamaño que el resto.",
+        "## Correcciones",
+        "- **Duplicados en el ERP:** la búsqueda flexible podía dar una factura por «ya contabilizada» solo porque su número contenía el año (por ejemplo, «26/…» coincidía con un documento de otro proveedor). Ahora exige el mismo número y, si se conoce, el mismo proveedor.",
+        "- La franja «Nueva versión disponible» ya no tapa el visor lateral, el To do, la pestaña de incidencias ni el modo punteo.",
+        "- El contador del To do se veía en blanco sobre fondo claro: ahora se ve en todos los temas.",
+        "- Facturación de ventas: la forma de pago enseña siempre todas las opciones, no solo la ya elegida.",
+        "- Autorizaciones: dos pruebas de firma de un mismo escrito podían salir las dos como «Prueba 01». Ahora siguen la numeración de la carpeta.",
+        "## Antes de actualizar",
+        "- Al arrancar se aplican dos migraciones de la base de datos que solo añaden datos nuevos (los enlaces de los correos y el registro de intentos de descarga). No modifican datos existentes.",
+        "- Relación proveedor-empresa necesita que la instalación tenga configurado el objeto de empresas del productor en los supuestos del ERP (lo comprueba el diagnóstico del ERP). Sin él, la pantalla lo dice en vez de consultar.",
+        "Pruebas: 1187 de 1187 (estándar). Las de integración con el ERP: 5 superadas y 42 saltadas por no tener el ERP configurado en el equipo de publicación. Instalador de Windows probado instalando, abriendo la DEMO y desinstalando."
+      ]
+    },
     {
       "version": "1.1.7",
       "published_at": "2026-10-08T13:17:57Z",
